@@ -1,0 +1,108 @@
+/* คุมโทนสีหลักให้เข้ากับหน้า Home */
+:root {
+    --dark-blue: #243f5a;
+    --muted-blue: #4a6d8c;
+}
+
+.text-dark-blue { color: var(--dark-blue) !important; }
+
+/* Header */
+.sub-header {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 12px 15px;
+}
+
+/* ช่อง Search ที่ดูโค้งมนและเด่นขึ้น */
+.search-group .form-control, .search-group .input-group-text, .search-group .btn {
+    border: 1px solid #cbd5e1;
+    background-color: #f8fafc;
+}
+.search-group .input-group-text { border-radius: 8px 0 0 8px; }
+.search-group .btn { border-radius: 0 8px 8px 0; }
+.search-group .form-control:focus {
+    background-color: #fff;
+    box-shadow: none;
+    border-color: var(--muted-blue);
+    border-left-color: #cbd5e1;
+    border-right-color: #cbd5e1;
+}
+
+/* Card พรีวิวสินค้า */
+.preview-card {
+    background-color: #fff;
+    border-left: 4px solid var(--muted-blue) !important;
+    border-radius: 8px;
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ปุ่มควบคุมจำนวน (+ / -) */
+.qty-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: var(--dark-blue);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s;
+}
+.qty-btn:active {
+    background-color: #e2e8f0;
+    transform: scale(0.95);
+}
+
+/* ช่องกรอกตัวเลข */
+.qty-input {
+    width: 110px;
+    height: 55px;
+    font-size: 1.8rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+}
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ปุ่มบวกด่วน */
+.quick-chip {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    border-color: #cbd5e1;
+    background-color: #fff;
+}
+.quick-chip:active {
+    background-color: var(--muted-blue);
+    color: white;
+    border-color: var(--muted-blue);
+}
+
+/* ปุ่มบันทึก (Primary Button) */
+.btn-primary-custom {
+    background-color: var(--dark-blue);
+    color: #fff;
+    border: none;
+    transition: all 0.2s;
+}
+.btn-primary-custom:active {
+    background-color: #1a2c42;
+    transform: scale(0.98);
+}
+.btn-primary-custom.disabled {
+    background-color: #cbd5e1;
+    color: #fff;
+    opacity: 1;
+    pointer-events: none;
+}

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบสำคัญรับ-จ่ายพัสดุ - Simple Entry System</title>
+    
+    <!-- Google Fonts: Sarabun -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --pdf-bg: #4a4e52;
+            --pdf-toolbar: #243f5a;
+            --text-dark: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--pdf-bg);
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* PDF Viewer Top Toolbar */
+        .pdf-toolbar {
+            width: 100%;
+            background-color: var(--pdf-toolbar);
+            color: #f1f5f9;
+            padding: 12px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .toolbar-inner {
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pdf-toolbar .btn-pdf {
+            background-color: rgba(255,255,255,0.14);
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        .pdf-toolbar .btn-pdf:hover {
+            background-color: rgba(255,255,255,0.28);
+            color: #ffffff;
+        }
+
+        /* Paper Document Sheet Container */
+        .sheet-container {
+            flex-grow: 1;
+            width: 100%;
+            padding: 30px 16px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Paper Sheet */
+        .document-sheet {
+            background-color: #ffffff;
+            color: var(--text-dark);
+            width: 100%;
+            max-width: 760px;
+            min-height: 980px;
+            padding: 44px 40px;
+            margin: 0 auto;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Barcode simulation */
+        .barcode-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .barcode-lines {
+            letter-spacing: -2px;
+            font-family: monospace;
+            font-size: 1.5rem;
+            line-height: 0.8;
+            user-select: none;
+            color: #1e293b;
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+            }
+            .pdf-toolbar {
+                display: none !important;
+            }
+            .sheet-container {
+                padding: 0 !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+            .document-sheet {
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 20px !important;
+                margin: 0 !important;
+                min-height: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PDF Viewer Controls Toolbar -->
+    <header class="pdf-toolbar">
+        <div class="toolbar-inner">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-file-earmark-pdf-fill text-danger fs-5"></i>
+                <span class="fw-semibold small" id="toolbarTitle">ใบสำคัญรับ-จ่ายพัสดุ (Document Viewer)</span>
+                <span class="badge bg-secondary font-monospace ms-2" id="toolbarRefId">...</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-pdf rounded px-3" onclick="window.print()">
+                    <i class="bi bi-printer me-1"></i> พิมพ์ / บันทึก PDF
+                </button>
+                <button class="btn btn-pdf rounded px-3" onclick="handleClose()">
+                    <i class="bi bi-x-lg me-1"></i> ปิดหน้าต่าง
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Document Paper Area -->
+    <main class="sheet-container">
+        
+        <!-- Loading State -->
+        <div id="loadingState" class="text-white text-center py-5">
+            <div class="spinner-border text-light mb-3" role="status"></div>
+            <div>กำลังโหลดข้อมูลเอกสาร...</div>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="text-white text-center py-5 d-none">
+            <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-2 d-block"></i>
+            <h5 id="errorMessage">ไม่พบข้อมูลเอกสาร</h5>
+            <button class="btn btn-pdf mt-3" onclick="history.back()">ย้อนกลับ</button>
+        </div>
+
+        <!-- Document Sheet Preview -->
+        <article class="document-sheet d-none" id="documentSheet">
+            
+            <!-- Header Section -->
+            <div class="d-flex justify-content-between align-items-start border-bottom pb-3 mb-3">
+                <div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="rounded-3 bg-dark text-white p-1 px-2 fw-bold" style="font-size: 0.9rem;">
+                            <i class="bi bi-box-seam me-1"></i> SES
+                        </div>
+                        <h6 class="fw-bold mb-0 text-dark" id="docOrgName">สถาบันเทคโนโลยีไทย-ญี่ปุ่น</h6>
+                    </div>
+                    <div class="text-muted" style="font-size: 0.75rem;">คลังพัสดุและระบบจัดการสต็อกกลาง (Central Inventory Storage)</div>
+                    <div class="text-muted" style="font-size: 0.7rem;">โทร: 02-763-2600 | อีเมล: support.store@tni.ac.th</div>
+                </div>
+                <div class="text-end">
+                    <span class="badge px-3 py-2 fs-6 rounded-pill border" id="docTypeBadge">
+                        ใบสำคัญรับ-จ่ายพัสดุ
+                    </span>
+                    <div class="barcode-box mt-2">
+                        <div class="barcode-lines">||| | |||| | ||||| || |</div>
+                        <span class="font-monospace fw-bold text-dark" style="font-size: 0.8rem;" id="docRefIdText">TXN-0000000</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Title Header -->
+            <div class="text-center my-3">
+                <h5 class="fw-bold text-dark mb-1" id="docMainTitle">ใบสำคัญการเคลื่อนไหวสินค้า (STOCK VOUCHER)</h5>
+                <div class="text-muted" style="font-size: 0.75rem;" id="docSubTitle">Goods Receipt & Issue Document</div>
+            </div>
+
+            <!-- Metadata Box -->
+            <div class="border rounded-3 p-3 bg-light mb-4" style="font-size: 0.8rem;">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <span class="text-muted">เลขที่เอกสาร (Ref ID):</span>
+                        <strong class="text-dark ms-1 font-monospace" id="docMetaRefId">-</strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-muted">วันที่และเวลา (Timestamp):</span>
+                        <strong class="text-dark ms-1" id="docMetaDate">-</strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-muted">ประเภทธุรกรรม (Type):</span>
+                        <strong class="text-dark ms-1" id="docMetaType">-</strong>
+                    </div>
+                    <div class="col-6">
+                        <span class="text-muted">ผู้ทำรายการ (Operator):</span>
+                        <strong class="text-dark ms-1" id="docMetaOperator">-</strong>
+                    </div>
+                    <div class="col-12 border-top pt-2 mt-2">
+                        <span class="text-muted">หมายเหตุ / เอกสารอ้างอิง:</span>
+                        <span class="text-dark ms-1" id="docMetaNote">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Items Table -->
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered align-middle" style="font-size: 0.82rem;">
+                    <thead class="table-secondary text-center">
+                        <tr>
+                            <th style="width: 50px;">ลำดับ</th>
+                            <th style="width: 140px;">รหัสสินค้า (SKU)</th>
+                            <th>รายละเอียดสินค้า (Description)</th>
+                            <th style="width: 110px;">หมวดหมู่</th>
+                            <th style="width: 100px;">จำนวน</th>
+                            <th style="width: 70px;">หน่วย</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td class="fw-bold font-monospace text-dark" id="docItemSku">-</td>
+                            <td>
+                                <div class="fw-semibold text-dark" id="docItemName">-</div>
+                                <div class="text-muted" style="font-size: 0.7rem;" id="docItemSubName">สินค้าคงคลังระบบ</div>
+                            </td>
+                            <td class="text-center" id="docItemCategory">-</td>
+                            <td class="text-end fw-bold fs-6" id="docItemQty">-</td>
+                            <td class="text-center">ชิ้น</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="table-light">
+                        <tr>
+                            <td colspan="4" class="text-end fw-semibold">รวมจำนวนทั้งสิ้น (Total Quantity):</td>
+                            <td class="text-end fw-bold fs-6" id="docTotalQty">-</td>
+                            <td class="text-center">ชิ้น</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Stock Balance Snapshot -->
+            <div class="p-2 px-3 rounded bg-light border d-flex justify-content-between align-items-center mb-4" style="font-size: 0.78rem;">
+                <span class="text-muted">
+                    <i class="bi bi-info-circle me-1"></i>ยอดสต็อกคงเหลือในคลังปัจจุบันของรายการนี้:
+                </span>
+                <span class="fw-bold text-dark fs-6" id="docCurrentStockSnapshot">- ชิ้น</span>
+            </div>
+
+            <!-- Signatures Section -->
+            <div class="row text-center mt-5 pt-3" style="font-size: 0.8rem;">
+                <div class="col-6">
+                    <div class="mb-4 text-muted">......................................................................</div>
+                    <div class="fw-bold text-dark" id="docSignOperator">( นายชยิน น้ำจันทร์ )</div>
+                    <div class="text-muted" style="font-size: 0.72rem;">ผู้ส่งมอบ / พนักงานผู้ทำรายการ</div>
+                    <div class="text-muted" style="font-size: 0.7rem;" id="docSignDate">วันที่: ................................................</div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-4 text-muted">......................................................................</div>
+                    <div class="fw-bold text-dark">( ............................................................ )</div>
+                    <div class="text-muted" style="font-size: 0.72rem;">หัวหน้าคลังพัสดุ / ผู้มีอำนาจตรวจรับ</div>
+                    <div class="text-muted" style="font-size: 0.7rem;">วันที่: ................................................</div>
+                </div>
+            </div>
+
+            <!-- Document Footer Watermark -->
+            <div class="border-top pt-3 mt-5 d-flex justify-content-between text-muted" style="font-size: 0.65rem;">
+                <span>เอกสารนี้สร้างขึ้นโดยระบบอัตโนมัติ (Simple Entry System)</span>
+                <span id="docPrintTimestamp">พิมพ์เมื่อ: -</span>
+            </div>
+
+        </article>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const refId = params.get('refId');
+
+            if (!refId) {
+                showError('ไม่พบรหัสอ้างอิงเอกสาร (Missing Ref ID)');
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/reports/transactions/${encodeURIComponent(refId)}`);
+                const result = await res.json();
+
+                if (!res.ok || !result.success || !result.data) {
+                    showError(result.message || 'ไม่พบรายการเอกสารในระบบ');
+                    return;
+                }
+
+                renderSlip(result.data);
+            } catch (err) {
+                console.error('Error fetching slip details:', err);
+                showError('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์เพื่อโหลดข้อมูลเอกสารได้');
+            }
+        });
+
+        function renderSlip(data) {
+            const { transaction: t, product: p, settings: s } = data;
+            const isIn = t.type === 'in';
+
+            document.title = `Slip_${t.refId}`;
+            document.getElementById('toolbarRefId').innerText = t.refId;
+
+            // Settings & Titles
+            if (s && s.orgName) document.getElementById('docOrgName').innerText = s.orgName;
+
+            const typeBadge = document.getElementById('docTypeBadge');
+            const mainTitle = document.getElementById('docMainTitle');
+            const subTitle = document.getElementById('docSubTitle');
+
+            if (isIn) {
+                typeBadge.className = 'badge px-3 py-2 fs-6 rounded-pill';
+                typeBadge.style.backgroundColor = 'rgba(84, 127, 97, 0.12)';
+                typeBadge.style.color = '#547f61';
+                typeBadge.style.border = '1px solid rgba(84, 127, 97, 0.4)';
+                typeBadge.innerText = 'ใบสำคัญรับสินค้าเข้าคลัง (GRN)';
+                mainTitle.innerText = 'ใบสำคัญการรับสินค้าเข้าคลัง (GOODS RECEIPT)';
+                subTitle.innerText = 'Goods Receipt Note - Central Warehouse Store';
+            } else {
+                typeBadge.className = 'badge px-3 py-2 fs-6 rounded-pill';
+                typeBadge.style.backgroundColor = 'rgba(188, 108, 59, 0.12)';
+                typeBadge.style.color = '#bc6c3b';
+                typeBadge.style.border = '1px solid rgba(188, 108, 59, 0.4)';
+                typeBadge.innerText = 'ใบสำคัญเบิกจ่ายพัสดุ (GIN)';
+                mainTitle.innerText = 'ใบสำคัญการเบิกจ่ายพัสดุ (GOODS ISSUE)';
+                subTitle.innerText = 'Goods Issue Voucher - Central Warehouse Store';
+            }
+
+            document.getElementById('docRefIdText').innerText = t.refId;
+            document.getElementById('docMetaRefId').innerText = t.refId;
+
+            const dateObj = new Date(t.timestamp);
+            const dateStr = dateObj.toLocaleString('th-TH', {
+                year: 'numeric', month: 'short', day: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            }) + ' น.';
+            document.getElementById('docMetaDate').innerText = dateStr;
+
+            document.getElementById('docMetaType').innerText = isIn ? 'รับเข้าคลังสินค้า (Stock In)' : 'เบิกจ่ายออกจากคลัง (Stock Out)';
+            document.getElementById('docMetaOperator').innerText = t.performedBy || 'พนักงานคลังสินค้า';
+            document.getElementById('docMetaNote').innerText = (t.note && t.note !== '-') ? t.note : 'ไม่มีข้อความหมายเหตุเพิ่มเติม';
+
+            // Items Table
+            document.getElementById('docItemSku').innerText = t.sku;
+            document.getElementById('docItemName').innerText = t.productName;
+            document.getElementById('docItemSubName').innerText = `หมวดหมู่: ${p.category || 'ทั่วไป'}`;
+            document.getElementById('docItemCategory').innerText = p.category || '-';
+
+            const qtyText = (isIn ? '+' : '-') + Number(t.qty).toLocaleString();
+            const qtyColor = isIn ? '#547f61' : '#bc6c3b';
+            const qtyEl = document.getElementById('docItemQty');
+            qtyEl.innerText = qtyText;
+            qtyEl.className = 'text-end fw-bold fs-6';
+            qtyEl.style.color = qtyColor;
+
+            const totalQtyEl = document.getElementById('docTotalQty');
+            totalQtyEl.innerText = Number(t.qty).toLocaleString();
+            totalQtyEl.className = 'text-end fw-bold fs-6';
+            totalQtyEl.style.color = qtyColor;
+
+            // Current Stock Snapshot
+            if (p && typeof p.stock === 'number') {
+                document.getElementById('docCurrentStockSnapshot').innerText = `${p.stock.toLocaleString()} ชิ้น`;
+            } else {
+                document.getElementById('docCurrentStockSnapshot').innerText = '-';
+            }
+
+            // Signatures
+            document.getElementById('docSignOperator').innerText = `( ${t.performedBy || 'พนักงานคลังสินค้า'} )`;
+            document.getElementById('docSignDate').innerText = `วันที่: ${dateObj.toLocaleDateString('th-TH')}`;
+
+            // Print Timestamp
+            document.getElementById('docPrintTimestamp').innerText = `พิมพ์เมื่อ: ${new Date().toLocaleString('th-TH')}`;
+
+            // Display
+            document.getElementById('loadingState').classList.add('d-none');
+            document.getElementById('documentSheet').classList.remove('d-none');
+        }
+
+        function showError(msg) {
+            document.getElementById('loadingState').classList.add('d-none');
+            document.getElementById('errorMessage').innerText = msg;
+            document.getElementById('errorState').classList.remove('d-none');
+        }
+
+        function handleClose() {
+            if (window.opener) {
+                window.close();
+            } else {
+                history.back();
+            }
+        }
+    </script>
+</body>
+</html>

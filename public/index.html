@@ -1,0 +1,63 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ - Simple Entry System</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* CSS เฉพาะหน้า Login */
+        .login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* เพิ่มพื้นหลังแบบไล่สีอ่อนๆ */
+        }
+
+        .login-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* เงาอ่อนๆ ให้กล่องดูลอยขึ้นมา */
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .login-card h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .login-card button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        .error-msg {
+            color: var(--danger-color);
+            font-size: 13px;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body class="login-page">
+    <div class="login-card">
+        <h2>Simple Entry System</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="ชื่อผู้ใช้งาน (Username)" required>
+            <input type="password" id="password" placeholder="รหัสผ่าน (Password)" required>
+            <button type="submit">เข้าสู่ระบบ</button>
+        </form>
+        <p id="errorMessage" class="error-msg"></p>
+    </div>
+    <script src="/app.js"></script>
+</body>
+</html>

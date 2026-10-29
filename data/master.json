@@ -1,0 +1,178 @@
+{
+  "users": [
+    {
+      "empId": "EMP-001",
+      "username": "admin",
+      "password": "1234",
+      "name": "กิตติภณ เรื่องวีระชัยกุล",
+      "role": "admin",
+      "email": "ktt.admin@tni.ac.th",
+      "status": "active",
+      "lastLogin": "2026-10-29T14:02:15.304Z"
+    },
+    {
+      "empId": "EMP-015",
+      "username": "staff_chokun",
+      "password": "1234",
+      "name": "รัฐพงษ์ เกิดมงคล",
+      "role": "staff",
+      "email": "rtt.staff@tni.ac.th",
+      "status": "active",
+      "lastLogin": "2026-10-29T14:03:30.791Z"
+    },
+    {
+      "empId": "EMP-016",
+      "username": "staff_drive",
+      "password": "1234",
+      "name": "ชยิน น้ำจันทร์",
+      "role": "staff",
+      "email": "chy.staff@tni.ac.th",
+      "status": "active",
+      "lastLogin": "2026-10-29T06:19:45.492Z"
+    },
+    {
+      "empId": "EMP-008",
+      "username": "staff_pote",
+      "password": "1234",
+      "name": "ชิษณุพงศ์ เผือกพ่วง",
+      "role": "staff",
+      "email": "chi.staff@tni.ac.th",
+      "status": "active",
+      "lastLogin": "2026-10-29T14:01:46.497Z"
+    },
+    {
+      "empId": "EMP-067",
+      "username": "staff_67",
+      "password": "1234",
+      "name": "ชายะยิน เกิดมงม่วง",
+      "role": "staff",
+      "email": "chi.staff@tni.ac.th",
+      "status": "inactive",
+      "lastLogin": "1900-09-15T17:00:00Z"
+    }
+  ],
+  "products": [
+    {
+      "sku": "SKU-001",
+      "name": "CPU Core i5 13400F",
+      "category": "Hardware",
+      "stock": 28,
+      "threshold": 20
+    },
+    {
+      "sku": "SKU-042",
+      "name": "RAM 16GB DDR5",
+      "category": "Hardware",
+      "stock": 24,
+      "threshold": 10
+    },
+    {
+      "sku": "SKU-099",
+      "name": "SSD 512GB NVMe M.2",
+      "category": "Hardware",
+      "stock": 9,
+      "threshold": 15
+    },
+    {
+      "sku": "SKU-110",
+      "name": "Cisco Switch 24-Port",
+      "category": "Network",
+      "stock": 10,
+      "threshold": 5
+    },
+    {
+      "sku": "SKU-185",
+      "name": "Monitor 24\" IPS 100Hz",
+      "category": "Hardware",
+      "stock": 0,
+      "threshold": 5
+    },
+    {
+      "sku": "SKU-205",
+      "name": "Wireless Mouse Ergonomic",
+      "category": "Accessory",
+      "stock": 55,
+      "threshold": 15
+    },
+    {
+      "sku": "SKU-301",
+      "name": "UPS 1000VA Clean Power",
+      "category": "Hardware",
+      "stock": 20,
+      "threshold": 5
+    },
+    {
+      "sku": "SKU-015",
+      "name": "Mainboard B760M Pro",
+      "category": "Hardware",
+      "stock": 14,
+      "threshold": 5
+    },
+    {
+      "sku": "SKU-055",
+      "name": "Power Supply 750W 80+ Gold",
+      "category": "Hardware",
+      "stock": 6,
+      "threshold": 8
+    },
+    {
+      "sku": "SKU-108",
+      "name": "External SSD 1TB Portable",
+      "category": "Storage",
+      "stock": 22,
+      "threshold": 8
+    },
+    {
+      "sku": "SKU-115",
+      "name": "Wi-Fi 6 Router AX3000",
+      "category": "Network",
+      "stock": 12,
+      "threshold": 5
+    },
+    {
+      "sku": "SKU-120",
+      "name": "สาย LAN Cat6 UTP (305M)",
+      "category": "Network",
+      "stock": 3,
+      "threshold": 5
+    },
+    {
+      "sku": "SKU-210",
+      "name": "Mechanical Keyboard RGB",
+      "category": "Accessory",
+      "stock": 28,
+      "threshold": 10
+    },
+    {
+      "sku": "SKU-225",
+      "name": "USB-C Multiport Hub 8-in-1",
+      "category": "Accessory",
+      "stock": 0,
+      "threshold": 10
+    },
+    {
+      "sku": "SKU-280",
+      "name": "สายสัญญาณ HDMI 2.0 (3M)",
+      "category": "Accessory",
+      "stock": 35,
+      "threshold": 15
+    },
+    {
+      "sku": "SKU-402",
+      "name": "Webcam Full HD 1080p",
+      "category": "Accessory",
+      "stock": 20,
+      "threshold": 8
+    }
+  ],
+  "settings": {
+    "orgName": "สถาบันเทคโนโลยีไทย-ญี่ปุ่น",
+    "systemName": "Simple Entry System",
+    "timezone": "Asia/Bangkok",
+    "dateFormat": "DD/MM/YYYY",
+    "globalThreshold": 10,
+    "adminEmail": "ktt.admin@tni.ac.th",
+    "inAppAlerts": true,
+    "emailAlerts": true
+  }
+}

@@ -1,0 +1,423 @@
+[
+  {
+    "refId": "TXN-2610036",
+    "type": "in",
+    "sku": "SKU-402",
+    "productName": "Webcam Full HD 1080p",
+    "qty": 2,
+    "note": "-",
+    "performedBy": "รัฐพงษ์ เกิดมงคล",
+    "empId": "EMP-015",
+    "timestamp": "2026-10-29T14:04:06.989Z"
+  },
+  {
+    "refId": "TXN-2610035",
+    "type": "out",
+    "sku": "SKU-280",
+    "productName": "สายสัญญาณ HDMI 2.0 (3M)",
+    "qty": 10,
+    "note": "-",
+    "performedBy": "รัฐพงษ์ เกิดมงคล",
+    "empId": "EMP-015",
+    "timestamp": "2026-10-29T14:03:47.692Z"
+  },
+  {
+    "refId": "TXN-2610034",
+    "type": "out",
+    "sku": "SKU-110",
+    "productName": "Cisco Switch 24-Port",
+    "qty": 5,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-29T14:02:29.604Z"
+  },
+  {
+    "refId": "TXN-2610033",
+    "type": "in",
+    "sku": "SKU-042",
+    "productName": "RAM 16GB DDR5",
+    "qty": 4,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-29T13:58:38.174Z"
+  },
+  {
+    "refId": "TXN-2610032",
+    "type": "out",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 4,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-29T13:33:37.180Z"
+  },
+  {
+    "refId": "TXN-2610031",
+    "type": "in",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 4,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-29T13:33:02.965Z"
+  },
+  {
+    "refId": "TXN-2610030",
+    "type": "out",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 2,
+    "note": "-",
+    "performedBy": "รัฐพงษ์ เกิดมงคล",
+    "empId": "EMP-015",
+    "timestamp": "2026-10-29T08:51:03.953Z"
+  },
+  {
+    "refId": "TXN-2610029",
+    "type": "out",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 5,
+    "note": "-",
+    "performedBy": "รัฐพงษ์ เกิดมงคล",
+    "empId": "EMP-015",
+    "timestamp": "2026-10-29T06:41:05.971Z"
+  },
+  {
+    "refId": "TXN-2610028",
+    "type": "out",
+    "sku": "SKU-042",
+    "productName": "RAM 16GB DDR5",
+    "qty": 4,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-29T06:39:48.911Z"
+  },
+  {
+    "refId": "TXN-2610027",
+    "type": "in",
+    "sku": "SKU-042",
+    "productName": "RAM 16GB DDR5",
+    "qty": 4,
+    "note": "-",
+    "performedBy": "รัฐพงษ์ เกิดมงคล",
+    "empId": "EMP-015",
+    "timestamp": "2026-10-29T06:38:33.323Z"
+  },
+  {
+    "refId": "TXN-2610026",
+    "type": "in",
+    "sku": "SKU-042",
+    "productName": "RAM 16GB DDR5",
+    "qty": 11,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-28T11:18:29.164Z"
+  },
+  {
+    "refId": "TXN-2610025",
+    "type": "out",
+    "sku": "SKU-015",
+    "productName": "Mainboard B760M Pro",
+    "qty": 1,
+    "note": "ปรับปรุงสต็อกคืน",
+    "performedBy": "กิตติภณ เรื่องวีระชัยกุล",
+    "empId": "EMP-001",
+    "timestamp": "2026-10-22T08:55:24.292Z"
+  },
+  {
+    "refId": "TXN-2610024",
+    "type": "in",
+    "sku": "SKU-015",
+    "productName": "Mainboard B760M Pro",
+    "qty": 1,
+    "note": "ทดสอบบันทึกแยกไฟล์",
+    "performedBy": "กิตติภณ เรื่องวีระชัยกุล",
+    "empId": "EMP-001",
+    "timestamp": "2026-10-22T08:55:04.296Z"
+  },
+  {
+    "refId": "TXN-2610023",
+    "type": "out",
+    "sku": "SKU-210",
+    "productName": "Mechanical Keyboard RGB",
+    "qty": 2,
+    "note": "เบิกเปลี่ยนคีย์บอร์ดประจำเคาน์เตอร์",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-22T08:15:00.000Z"
+  },
+  {
+    "refId": "TXN-2610022",
+    "type": "out",
+    "sku": "SKU-108",
+    "productName": "External SSD 1TB Portable",
+    "qty": 3,
+    "note": "เบิกใช้งานฝ่ายแผนงาน",
+    "performedBy": "ชยิน น้ำจันทร์",
+    "empId": "EMP-016",
+    "timestamp": "2026-10-22T08:05:00.000Z"
+  },
+  {
+    "refId": "TXN-2610021",
+    "type": "in",
+    "sku": "SKU-108",
+    "productName": "External SSD 1TB Portable",
+    "qty": 25,
+    "note": "รับเข้าคลังอุปกรณ์พกพา",
+    "performedBy": "รัฐพงษ์ เกิดมงคล",
+    "empId": "EMP-015",
+    "timestamp": "2026-10-22T07:45:00.000Z"
+  },
+  {
+    "refId": "TXN-2610020",
+    "type": "in",
+    "sku": "SKU-015",
+    "productName": "Mainboard B760M Pro",
+    "qty": 14,
+    "note": "ล็อตจัดซื้ออุปกรณ์ห้องแล็บใหม่",
+    "performedBy": "กิตติภณ เรื่องวีระชัยกุล",
+    "empId": "EMP-001",
+    "timestamp": "2026-10-22T07:30:00.000Z"
+  },
+  {
+    "refId": "TXN-2610019",
+    "type": "out",
+    "sku": "SKU-042",
+    "productName": "RAM 16GB DDR5",
+    "qty": 2,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-22T07:18:29.001Z"
+  },
+  {
+    "refId": "TXN-2610018",
+    "type": "in",
+    "sku": "SKU-042",
+    "productName": "RAM 16GB DDR5",
+    "qty": 3,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-22T07:01:42.337Z"
+  },
+  {
+    "refId": "TXN-2610017",
+    "type": "out",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 25,
+    "note": "-",
+    "performedBy": "ชิษณุพงศ์ เผือกพ่วง",
+    "empId": "EMP-008",
+    "timestamp": "2026-10-22T03:44:52.272Z"
+  },
+  {
+    "refId": "TXN-2610016",
+    "type": "in",
+    "sku": "SKU-110",
+    "productName": "Cisco Switch 24-Port",
+    "qty": 11,
+    "note": "-",
+    "performedBy": "ชยิน น้ำจันทร์",
+    "empId": "EMP-016",
+    "timestamp": "2026-10-22T03:29:32.774Z"
+  },
+  {
+    "refId": "TXN-2610015",
+    "type": "out",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 50,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-09T02:04:23.256Z"
+  },
+  {
+    "refId": "TXN-2610014",
+    "type": "in",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 10,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-09T02:04:01.913Z"
+  },
+  {
+    "refId": "TXN-2610013",
+    "type": "out",
+    "sku": "SKU-301",
+    "productName": "UPS 1000VA Clean Power",
+    "qty": 1,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-07T08:35:14.204Z"
+  },
+  {
+    "refId": "TXN-2610012",
+    "type": "out",
+    "sku": "SKU-099",
+    "productName": "SSD 512GB NVMe M.2",
+    "qty": 1,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-07T08:27:17.251Z"
+  },
+  {
+    "refId": "TXN-2610011",
+    "type": "out",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 55,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-07T08:21:05.284Z"
+  },
+  {
+    "refId": "TXN-2610010",
+    "type": "in",
+    "sku": "SKU-110",
+    "productName": "Cisco Switch 24-Port",
+    "qty": 1,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-07T08:18:19.315Z"
+  },
+  {
+    "refId": "TXN-2610009",
+    "type": "in",
+    "sku": "SKU-110",
+    "productName": "Cisco Switch 24-Port",
+    "qty": 1,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-07T08:18:03.947Z"
+  },
+  {
+    "refId": "TXN-2610008",
+    "type": "in",
+    "sku": "SKU-099",
+    "productName": "SSD 512GB NVMe M.2",
+    "qty": 4,
+    "note": "-",
+    "performedBy": "นายชยิน น้ำจันทร์",
+    "timestamp": "2026-10-07T08:01:20.386Z"
+  },
+  {
+    "refId": "TXN-2610007",
+    "type": "out",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 1,
+    "note": "-",
+    "performedBy": "นายชยิน น้ำจันทร์",
+    "timestamp": "2026-10-07T07:58:41.012Z"
+  },
+  {
+    "refId": "TXN-2610006",
+    "type": "in",
+    "sku": "SKU-301",
+    "productName": "UPS 1000VA Clean Power",
+    "qty": 20,
+    "note": "-",
+    "performedBy": "นายชยิน น้ำจันทร์",
+    "timestamp": "2026-10-07T07:57:58.771Z"
+  },
+  {
+    "refId": "TXN-2610005",
+    "type": "out",
+    "sku": "SKU-301",
+    "productName": "UPS 1000VA Clean Power",
+    "qty": 1,
+    "note": "-",
+    "performedBy": "นายชยิน น้ำจันทร์",
+    "timestamp": "2026-10-07T07:41:41.393Z"
+  },
+  {
+    "refId": "TXN-2610004",
+    "type": "out",
+    "sku": "SKU-099",
+    "productName": "SSD 512GB NVMe M.2",
+    "qty": 6,
+    "note": "-",
+    "performedBy": "นายชยิน น้ำจันทร์",
+    "timestamp": "2026-10-07T07:41:16.282Z"
+  },
+  {
+    "refId": "TXN-2610003",
+    "type": "in",
+    "sku": "SKU-205",
+    "productName": "Wireless Mouse Ergonomic",
+    "qty": 10,
+    "note": "-",
+    "performedBy": "นายชยิน น้ำจันทร์",
+    "timestamp": "2026-10-07T07:40:53.578Z"
+  },
+  {
+    "refId": "TXN-2610002",
+    "type": "in",
+    "sku": "SKU-110",
+    "productName": "Cisco Switch 24-Port",
+    "qty": 2,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-06T07:49:59.092Z"
+  },
+  {
+    "refId": "TXN-2610001",
+    "type": "in",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 6,
+    "note": "-",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-10-06T07:36:16.464Z"
+  },
+  {
+    "refId": "TXN-2609005",
+    "type": "in",
+    "sku": "SKU-001",
+    "productName": "CPU Core i5 13400F",
+    "qty": 50,
+    "note": "PO-8891 รับสินค้าเข้าล็อตหลัก",
+    "performedBy": "นายรัฐพงษ์ เกิดมงคล",
+    "timestamp": "2026-09-29T14:30:00Z"
+  },
+  {
+    "refId": "TXN-2609004",
+    "type": "out",
+    "sku": "SKU-042",
+    "productName": "RAM 16GB DDR5",
+    "qty": 10,
+    "note": "เบิกใช้งานห้องแล็บ IT",
+    "performedBy": "นายชยิน น้ำจันทร์",
+    "timestamp": "2026-09-29T10:15:00Z"
+  },
+  {
+    "refId": "TXN-2609003",
+    "type": "out",
+    "sku": "SKU-110",
+    "productName": "Cisco Switch 24-Port",
+    "qty": 2,
+    "note": "ติดตั้งตึก E ชั้น 3",
+    "performedBy": "นายชิษณุพงศ์ เผือกพ่วง",
+    "timestamp": "2026-09-28T16:45:00Z"
+  },
+  {
+    "refId": "TXN-2609002",
+    "type": "in",
+    "sku": "SKU-205",
+    "productName": "Wireless Mouse Ergonomic",
+    "qty": 20,
+    "note": "PO-8850 สั่งซื้อเพิ่มเติม",
+    "performedBy": "นายกิตติภณ เรื่องวีระชัยกุล",
+    "timestamp": "2026-09-28T09:00:00Z"
+  }
+]

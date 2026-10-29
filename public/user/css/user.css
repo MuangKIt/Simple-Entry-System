@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+
+/* =========================================
+   Components (Cards, Buttons, Logs)
+========================================= */
+.stat-card {
+    border-radius: 12px;
+}
+.icon-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.text-dark-blue { color: var(--dark-blue); }
+.text-primary-dark { color: var(--primary-dark); }
+.text-warning-custom { color: var(--warning-custom); }
+
+.announcement-card {
+    background-color: rgba(74, 109, 140, 0.05);
+    border-left: 4px solid var(--muted-blue) !important;
+    border-radius: 8px;
+}
+
+/* ปุ่มทำรายการหลัก */
+.btn-operation {
+    height: 110px;
+    border-radius: 16px;
+    border: none;
+    transition: transform 0.1s;
+}
+.btn-operation:active {
+    transform: scale(0.96);
+}
+.btn-operation i {
+    font-size: 2rem;
+}
+.btn-operation span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.btn-operation small {
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+.bg-tile-green { background-color: var(--tile-green); }
+.bg-tile-orange { background-color: var(--tile-orange); }
+
+/* ประวัติล่าสุด */
+.recent-logs .list-group-item {
+    border: none;
+    border-bottom: 1px solid #f0f4f7;
+}
+.recent-logs .list-group-item:last-child {
+    border-bottom: none;
+}
+.log-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+

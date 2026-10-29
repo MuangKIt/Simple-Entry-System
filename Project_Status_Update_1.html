@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Status Update #1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1, h2, h3 { color: #243f5a; }
+        h1 { border-bottom: 2px solid #243f5a; padding-bottom: 10px; }
+        h2 { margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+        table, th, td { border: 1px solid #ddd; }
+        th { background-color: #f4f6f8; padding: 12px; text-align: left; }
+        td { padding: 12px; }
+        .text-center { text-align: center; }
+        .status-done { color: #15803d; font-weight: bold; }
+        .status-doing { color: #b45309; font-weight: bold; }
+        .status-todo { color: #b91c1c; font-weight: bold; }
+        ul { padding-left: 20px; }
+        @media print {
+            body { padding: 0; max-width: 100%; }
+            .no-print { display: none; }
+        }
+        .btn-print {
+            display: inline-block;
+            background: #243f5a;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border: none;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <button class="no-print btn-print" onclick="window.print()">🖨️ พิมพ์เป็น PDF (Print to PDF)</button>
+
+    <h1>รายงานความคืบหน้าโครงงาน</h1>
+    <p><strong>กลุ่มที่ 2: ระบบจัดการคลังสินค้า (WMS Simple Entry System / Demand Forecasting System)</strong></p>
+
+    <h2>1. คำอธิบายโดยสังเขปเกี่ยวกับ Application ที่พัฒนา</h2>
+    <p><strong>WMS Simple Entry System</strong> คือระบบจัดการคลังสินค้าขนาดเล็กถึงขนาดกลาง ที่ออกแบบให้ใช้งานง่ายและรวดเร็ว รองรับการทำงานผ่านคอมพิวเตอร์และสมาร์ทโฟน โดยมีการแบ่งสิทธิ์การใช้งานเป็น 2 ระดับ:</p>
+    <ul>
+        <li><strong>Admin (ผู้ดูแลระบบ):</strong> มีสิทธิ์สูงสุด ควบคุมข้อมูลหลัก (Master Data), จัดการผู้ใช้งาน (User Management), ตั้งค่าจำนวนขั้นต่ำของสินค้า (Threshold Quantity) เพื่อเตือนเมื่อสินค้าใกล้หมด และดูรายงานเชิงบริหารของระบบ</li>
+        <li><strong>Staff (พนักงานคลังสินค้า):</strong> มีหน้าที่บันทึกการรับสินค้าเข้า (Stock-In) และจ่ายสินค้าออก (Stock-Out) ผ่าน UI ที่ออกแบบมาสำหรับมือถือโดยเฉพาะ ระบบจะไม่อนุญาตให้ Staff แก้ไขข้อมูลหลัก หรือดูรายงานเชิงบริหาร</li>
+    </ul>
+    <p><strong>แนวทางการพัฒนา (Development Approaches): Hybrid (Plan-driven + Agile)</strong></p>
+    <ul>
+        <li><strong>Plan-driven:</strong> ใช้กับส่วนที่แก้ไขทีหลังได้ยาก เช่น สถาปัตยกรรมระบบ (System Architecture) และโครงสร้างฐานข้อมูล (Database Schema)</li>
+        <li><strong>Agile:</strong> แบ่งการทำงานเป็นรอบ (Sprint) สำหรับส่วนที่ขึ้นอยู่กับ Feedback เช่น การออกแบบ UI/UX และกระบวนการทำงาน เพื่อความยืดหยุ่น</li>
+    </ul>
+
+    <h2>2. ภาพรวมแผนงาน (Project Plan)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th width="10%">Sprint</th>
+                <th width="40%">กิจกรรม (Activities)</th>
+                <th width="25%">ผลลัพธ์ (Deliverables)</th>
+                <th width="15%">ผู้รับผิดชอบ</th>
+                <th width="10%">สถานะ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center"><strong>1</strong></td>
+                <td>รวบรวม Requirement (RE Process), ออกแบบ ER Diagram/Database Schema และพัฒนาโครงสร้าง Core API เบื้องต้น พร้อมระบบ Authentication</td>
+                <td>เอกสาร SRS, โครงสร้างฐานข้อมูลเบื้องต้น และระบบ Login สามารถใช้งานได้</td>
+                <td>ชยิน, รัฐพงษ์, ชิษณุพงศ์, กิตติภณ</td>
+                <td class="text-center status-done">เสร็จสิ้น</td>
+            </tr>
+            <tr>
+                <td class="text-center"><strong>2</strong></td>
+                <td>พัฒนาระบบจัดการคลังสินค้าหลัก (Basic Inventory), ระบบตัดสต็อก (Simple Deduction) และพัฒนาหน้า UI สำหรับ Admin และ Staff</td>
+                <td>ระบบติดตามระดับ SKU, บันทึกข้อมูลพื้นฐาน และแสดงผลบน UI ได้จริง</td>
+                <td>กิตติภณ (Dev หลัก)</td>
+                <td class="text-center status-done">เสร็จสิ้น</td>
+            </tr>
+            <tr>
+                <td class="text-center"><strong>3</strong></td>
+                <td>พัฒนาระบบแจ้งเตือนสินค้าใกล้หมด (Threshold Alert), พัฒนาระบบจัดการผู้ใช้งาน (User & Role Management) และ Dashboard สรุปผล</td>
+                <td>แสดงแจ้งเตือน Low Stock และแบ่งสิทธิ์ Admin/Staff ได้สมบูรณ์</td>
+                <td>กิตติภณ (Dev หลัก)</td>
+                <td class="text-center status-doing">กำลังดำเนินการ</td>
+            </tr>
+            <tr>
+                <td class="text-center"><strong>4</strong></td>
+                <td>รวมระบบทั้งหมด ทดสอบภายในทีม (End-to-End Testing) และนำ Prototype ให้ทีม User ทดลองใช้งานเพื่อเก็บ Feedback</td>
+                <td>ระบบพร้อมใช้งานจริงและส่งมอบรายงานสรุปโปรเจค</td>
+                <td>สมาชิกกลุ่มทุกคน</td>
+                <td class="text-center status-todo">ยังไม่เริ่ม</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. ความคืบหน้าของโครงงาน (Progress Update)</h2>
+    <p><strong>ความคืบหน้าปัจจุบันคิดเป็น: ประมาณ 75% ของแผนงานทั้งหมด</strong></p>
+    <p><strong>สิ่งที่ทำไปแล้ว (Completed):</strong></p>
+    <ul>
+        <li>โครงสร้างและหน้าจอ UI ทั้งหมด (Admin Dashboard และ Staff Mobile UI)</li>
+        <li>สถาปัตยกรรมระบบหลังบ้าน (Node.js + Express) และ API แบบ RESTful ครบทุกฟังก์ชันหลัก</li>
+        <li>การเชื่อมต่อ Frontend กับ Backend ด้วย Fetch API แทนการใช้ข้อมูลจำลอง</li>
+        <li>ระบบรักษาความปลอดภัยเบื้องต้น (Authentication Guard) และการแบ่งสิทธิ์ (Role-based access)</li>
+        <li>ฟังก์ชันทำรายการหลัก (Stock-In และ Stock-Out) ที่ตัดสต็อกได้จริง</li>
+    </ul>
+    <p><strong>สิ่งที่เหลืออยู่ (To Do):</strong></p>
+    <ul>
+        <li>ปรับปรุงความสมบูรณ์ของฟีเจอร์รอง เช่น ระบบเปลี่ยนรหัสผ่าน การจัดการโปรไฟล์พนักงาน</li>
+        <li>ทดสอบการทำงานของระบบแจ้งเตือนสินค้าใกล้หมดให้ครอบคลุม</li>
+        <li>วางแผนย้ายฐานข้อมูลจากไฟล์ JSON ชั่วคราวไปใช้ Database จริง (Relational Database)</li>
+        <li>การทำ End-to-End Testing และ User Acceptance Test (UAT) ตาม Sprint ที่ 4</li>
+    </ul>
+
+    <h2>4. บันทึกการพัฒนา (Dev Log)</h2>
+    <p><strong>ขั้นตอนที่ได้ดำเนินการมา:</strong></p>
+    <ul>
+        <li><strong>Phase 1 - Prototyping:</strong> เริ่มต้นออกแบบ User Interface โดยใช้งาน AI ช่วยสร้างหน้าจอทีละหน้า ได้ผลลัพธ์เป็น UI Prototype เปล่าๆ ที่แสดงผลข้อมูลจำลอง (Mock Data) และปุ่มคำสั่งต่างๆ ยังเป็นเพียง Dummy</li>
+        <li><strong>Phase 2 - Backend & Architecture:</strong> นำโค้ด UI มาพัฒนาต่อในสภาพแวดล้อมที่ใช้งานได้จริง จัดโครงสร้างโฟลเดอร์ให้เป็นระเบียบ (แยก routes, controllers, middlewares) และพัฒนา REST API ด้วย Node.js และ Express โดยใช้ไฟล์ <code>data.json</code> เป็นฐานข้อมูลหลักชั่วคราว</li>
+        <li><strong>Phase 3 - Integration:</strong> นำหน้าจอฝั่ง Frontend (ที่เคยฝัง Mock Data) มาเขียนคำสั่ง Fetch API เพื่อดึงข้อมูลจริงจาก Backend พร้อมทั้งสร้างระบบ Login ตรวจสอบสิทธิ์ก่อนเข้าใช้งานหน้าต่างๆ</li>
+        <li><strong>Phase 4 - UX/UI Refinement:</strong> ปรับปรุงความสวยงามและประสบการณ์การใช้งาน เช่น 
+            <ul>
+                <li>เพิ่มระบบจำลองเวลาโหลด (Loading Spinner) ก่อนยืนยันทำรายการ</li>
+                <li>เพิ่ม Success Modal แจ้งเตือนเมื่อทำรายการเสร็จ พร้อมแสดงเลขที่อ้างอิง (Ref-ID) และวันเวลา</li>
+                <li>ปรับโทนสีป้ายสถานะ (In Stock, Low Stock, Out of Stock) ให้เป็นโทนสีพาสเทล/ตุ่น เพื่อความสบายตา</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><strong>ผลลัพธ์ปัจจุบัน:</strong> <br>
+    ได้เป็น Prototype ที่สามารถรันใช้งานได้ใน Local Environment ระบบหลักสามารถทำงานได้อย่างสมบูรณ์ ข้อมูลมีการเชื่อมต่อกันจริง และสามารถนำสมาร์ทโฟนที่อยู่ในเครือข่ายเดียวกัน (Local Network) เปิดใช้งานหน้า Staff UI ได้ทันที</p>
+
+    <p><strong>แผนการในอนาคต:</strong> <br>
+    พัฒนาฟีเจอร์รองให้สมบูรณ์ครบถ้วน และพิจารณาปรับปรุงสถาปัตยกรรมข้อมูลไปใช้ Database ที่เป็นระบบจัดการฐานข้อมูลจริงๆ (เช่น MySQL, PostgreSQL) เพื่อเตรียมพร้อมสำหรับ Production</p>
+
+</body>
+</html>

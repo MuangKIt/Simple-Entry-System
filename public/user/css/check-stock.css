@@ -1,0 +1,180 @@
+/* public/user/css/check-stock.css */
+
+/* คุมโทนสีให้กลมกลืนกับระบบ */
+:root {
+    --dark-blue: #243f5a;
+    --muted-blue: #4a6d8c;
+    --primary-dark: #1a2c42;
+    --tile-green: #6a9b77;
+    --tile-orange: #c4956a;
+}
+
+.text-dark-blue { color: var(--dark-blue) !important; }
+
+/* Sub Header */
+.sub-header {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 12px 15px;
+}
+
+.header-action-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--dark-blue);
+    transition: background-color 0.2s;
+}
+.header-action-btn:active {
+    background-color: #e2e8f0;
+}
+
+/* Search Group */
+.search-group .form-control, 
+.search-group .input-group-text, 
+.search-group .btn {
+    border: 1px solid #cbd5e1;
+    background-color: #fff;
+}
+.search-group .input-group-text { border-radius: 10px 0 0 10px; }
+.search-group .btn { border-radius: 0 10px 10px 0; }
+.search-group .form-control:focus {
+    background-color: #fff;
+    box-shadow: none;
+    border-color: var(--muted-blue);
+    border-left-color: #cbd5e1;
+    border-right-color: #cbd5e1;
+}
+
+/* Filter Chips (แนวนอน เลื่อนได้) */
+.filter-chip-row {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.filter-chip-row::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-chip {
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 20px;
+    white-space: nowrap;
+    border: 1px solid #cbd5e1;
+    background-color: #fff;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+.filter-chip:active {
+    transform: scale(0.96);
+}
+.filter-chip.active {
+    background-color: var(--dark-blue);
+    color: #fff;
+    border-color: var(--dark-blue);
+    font-weight: 600;
+}
+
+/* Product Card */
+.stock-card {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    transition: transform 0.15s, border-color 0.2s;
+    overflow: hidden;
+}
+
+/* ไฮไลต์สินค้า (เมื่อส่ง ?sku=... มาจากหน้าทำรายการ) */
+.stock-card.highlighted {
+    border: 2px solid var(--muted-blue) !important;
+    box-shadow: 0 0 12px rgba(74, 109, 140, 0.3) !important;
+    animation: highlightPulse 2s ease-in-out;
+}
+
+@keyframes highlightPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.badge-in-stock {
+    background-color: rgba(106, 155, 119, 0.12);
+    color: var(--tile-green);
+    border: 1px solid rgba(106, 155, 119, 0.4);
+}
+
+.badge-low-stock {
+    background-color: rgba(196, 149, 106, 0.12);
+    color: #c4956a;
+    border: 1px solid rgba(196, 149, 106, 0.4);
+}
+
+.badge-out-stock {
+    background-color: rgba(185, 92, 80, 0.12);
+    color: #b95c50;
+    border: 1px solid rgba(185, 92, 80, 0.4);
+}
+
+/* Quick Action Buttons inside Card */
+.card-action-btn {
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.btn-card-in {
+    background-color: rgba(106, 155, 119, 0.12);
+    color: var(--tile-green);
+    border: 1px solid rgba(106, 155, 119, 0.3);
+}
+.btn-card-in:hover, .btn-card-in:active {
+    background-color: var(--tile-green);
+    color: #fff;
+}
+
+.btn-card-out {
+    background-color: rgba(196, 149, 106, 0.12);
+    color: var(--tile-orange);
+    border: 1px solid rgba(196, 149, 106, 0.3);
+}
+.btn-card-out:hover, .btn-card-out:active {
+    background-color: var(--tile-orange);
+    color: #fff;
+}
+
+.btn-card-out.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #94a3b8;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #94a3b8;
+}
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+    opacity: 0.5;
+}

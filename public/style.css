@@ -1,0 +1,65 @@
+/* style.css (ใช้ร่วมกัน) */
+:root {
+    --primary-color: #3a6591; /* สีฟ้าสว่าง ดูทันสมัย */
+    --primary-dark: #24476d;
+    --background-color: #F8F9FA; /* สีพื้นหลังเทาอ่อน คลีนๆ */
+    --text-color: #333333;
+    --border-color: #E0E0E0;
+    --white: #FFFFFF;
+    --danger-color: #E74C3C;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* ฟอนต์ที่ดูสะอาดตา */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* สไตล์ปุ่มแบบ Minimal */
+button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-danger:hover {
+    background-color: #C0392B;
+}
+
+/* สไตล์ Input แบบคลีนๆ */
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    background-color: var(--white);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.2);
+}

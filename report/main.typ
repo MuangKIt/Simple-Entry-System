@@ -1,0 +1,1 @@
+#include "report_simple_entry_system.typ"

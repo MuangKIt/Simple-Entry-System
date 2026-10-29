@@ -1,0 +1,48 @@
+/* คุมโทนสีหน้า Profile */
+:root {
+    --dark-blue: #243f5a;
+    --muted-blue: #4a6d8c;
+    --warning-custom: #d97706;
+}
+
+.text-dark-blue { color: var(--dark-blue) !important; }
+.text-warning-custom { color: var(--warning-custom) !important; }
+
+/* Header */
+.sub-header {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 15px;
+}
+
+/* ไอคอนนำหน้าเมนู List Group */
+.menu-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+/* เอฟเฟกต์เวลากดเมนู */
+.list-group-item {
+    transition: background-color 0.1s;
+}
+.list-group-item:active {
+    background-color: #f8fafc !important;
+}
+
+/* ปุ่ม Logout สีแดงเด่นชัดแต่อยู่ในโทนที่ดูซอฟต์ ไม่แสบตาเกินไป */
+.btn-logout {
+    background-color: #fee2e2; /* สีพื้นหลังแดงอ่อน */
+    color: #dc2626; /* ตัวหนังสือแดงเข้ม */
+    border: 1px solid #fecaca;
+    transition: all 0.2s;
+}
+.btn-logout:active {
+    background-color: #fca5a5;
+    color: #b91c1c;
+    transform: scale(0.98);
+}

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Simple Entry System</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="bg-light-gray">
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom top-navbar px-3 py-1">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-primary-dark fs-6" href="#">
+                <i class="bi bi-box-seam me-2"></i>Simple Entry System
+            </a>
+            
+            <div class="d-flex align-items-center">
+                <a href="#" class="nav-link me-3 text-secondary hover-primary">
+                    <i class="bi bi-envelope fs-6"></i>
+                </a>
+                <a href="#" class="nav-link me-4 position-relative text-secondary hover-primary">
+                    <i class="bi bi-bell fs-6"></i>
+                    <span class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">3</span>
+                </a>
+                
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center text-dark small" href="#" role="button" data-bs-toggle="dropdown">
+                        <img id="adminProfileAvatar" src="https://ui-avatars.com/api/?name=Admin&background=243f5a&color=fff" alt="Profile" class="rounded-circle me-2" width="30" height="30">
+                        <div class="admin-profile-info">
+                            <span id="adminProfileName" class="admin-profile-name">Admin</span>
+                            <span id="adminProfileRole" class="admin-profile-role">ผู้ดูแลระบบ (Admin)</span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm small">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>โปรไฟล์</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="../index.html"><i class="bi bi-box-arrow-right me-2"></i>ออกจากระบบ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Secondary Navbar -->
+    <nav class="navbar navbar-expand-lg secondary-navbar px-3">
+        <div class="container-fluid">
+            <ul class="navbar-nav me-auto flex-row gap-3">
+                <li class="nav-item"><a class="nav-link small" href="admin.html"><i class="bi bi-house-door me-1"></i> Home</a></li>
+                <li class="nav-item"><a class="nav-link small" href="master-data.html"><i class="bi bi-database me-1"></i> Master Data</a></li>
+                <li class="nav-item"><a class="nav-link small" href="staff-management.html"><i class="bi bi-people me-1"></i> Staff Management</a></li>
+                <li class="nav-item"><a class="nav-link small" href="reports.html"><i class="bi bi-file-earmark-text me-1"></i> Reports / History</a></li>
+                <li class="nav-item"><a class="nav-link active small" href="settings.html"><i class="bi bi-gear me-1"></i> Settings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid p-3">
+        
+        <!-- Breadcrumb & Title -->
+        <div class="d-flex justify-content-between align-items-end mb-3">
+            <div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-1" style="font-size: 0.75rem;">
+                        <li class="breadcrumb-item"><a href="admin.html" class="text-decoration-none text-muted">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                    </ol>
+                </nav>
+                <h5 class="fw-bold mb-0 text-dark-blue">ตั้งค่าระบบ (System Settings)</h5>
+            </div>
+            <!-- Global Save Button -->
+            <button class="btn btn-sm btn-primary-custom px-4 shadow-none d-flex align-items-center" onclick="saveSettings()">
+                <i class="bi bi-save me-2"></i> บันทึกการตั้งค่า
+            </button>
+        </div>
+
+        <div class="row g-4">
+            <!-- Sidebar Navigation (Vertical Pills) -->
+            <div class="col-xl-2 col-lg-3">
+                <div class="card dashboard-card">
+                    <div class="card-body p-2">
+                        <div class="nav flex-column nav-pills custom-pills" id="settings-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active text-start" data-bs-toggle="pill" data-bs-target="#v-general" type="button" role="tab">
+                                <i class="bi bi-sliders me-2"></i> ทั่วไป (General)
+                            </button>
+                            <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#v-inventory" type="button" role="tab">
+                                <i class="bi bi-box-seam me-2"></i> คลังสินค้า (Inventory)
+                            </button>
+                            <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#v-notifications" type="button" role="tab">
+                                <i class="bi bi-bell me-2"></i> การแจ้งเตือน (Notifications)
+                            </button>
+                            <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#v-database" type="button" role="tab">
+                                <i class="bi bi-hdd-network me-2"></i> ฐานข้อมูล (Database)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Content Area -->
+            <div class="col-xl-10 col-lg-9">
+                <div class="tab-content" id="settings-tabContent">
+                    
+                    <!-- 1. General Settings -->
+                    <div class="tab-pane fade show active" id="v-general" role="tabpanel">
+                        <div class="card dashboard-card">
+                            <div class="card-header bg-white p-3 border-bottom">
+                                <h6 class="fw-bold text-dark-blue mb-0">ตั้งค่าทั่วไป (General Settings)</h6>
+                            </div>
+                            <div class="card-body p-4" style="font-size: 0.85rem;">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label text-muted fw-semibold mb-1">ชื่อองค์กร / บริษัท</label>
+                                        <input type="text" class="form-control form-control-sm shadow-none" value="สถาบันเทคโนโลยีไทย-ญี่ปุ่น">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-muted fw-semibold mb-1">ชื่อระบบ (System Name)</label>
+                                        <input type="text" class="form-control form-control-sm shadow-none" value="Simple Entry System">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-muted fw-semibold mb-1">โซนเวลา (Timezone)</label>
+                                        <select class="form-select form-select-sm shadow-none">
+                                            <option value="Asia/Bangkok" selected>(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
+                                            <option value="Asia/Tokyo">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-muted fw-semibold mb-1">รูปแบบวันที่ (Date Format)</label>
+                                        <select class="form-select form-select-sm shadow-none">
+                                            <option value="DD/MM/YYYY" selected>DD/MM/YYYY (เช่น 29/09/2026)</option>
+                                            <option value="YYYY-MM-DD">YYYY-MM-DD (เช่น 2026-09-29)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Inventory Settings -->
+                    <div class="tab-pane fade" id="v-inventory" role="tabpanel">
+                        <div class="card dashboard-card">
+                            <div class="card-header bg-white p-3 border-bottom">
+                                <h6 class="fw-bold text-dark-blue mb-0">ตั้งค่าคลังสินค้า (Inventory Configuration)</h6>
+                            </div>
+                            <div class="card-body p-4" style="font-size: 0.85rem;">
+                                <div class="row g-4">
+                                    <div class="col-md-12">
+                                        <div class="p-3 bg-light rounded border">
+                                            <label class="form-label text-dark fw-bold mb-1">ค่าเริ่มต้นแจ้งเตือนสินค้าใกล้หมด (Global Threshold)</label>
+                                            <p class="text-muted mb-2" style="font-size: 0.75rem;">ระบบจะใช้ค่านี้เป็นเกณฑ์แจ้งเตือน หากสินค้าไม่ได้ถูกตั้งค่า Threshold รายตัวไว้</p>
+                                            <div class="d-flex align-items-center">
+                                                <input type="number" class="form-control form-control-sm shadow-none text-end me-2" value="10" style="width: 100px;">
+                                                <span class="text-muted">ชิ้น / หน่วย</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-muted fw-semibold mb-1">กลไกการตัดสต็อก (Deduction Mechanism)</label>
+                                        <select class="form-select form-select-sm shadow-none" disabled>
+                                            <option selected>Simple Deduction (ตัดทันทีไม่มีอนุมัติ)</option>
+                                        </select>
+                                        <div class="form-text" style="font-size: 0.7rem;">*ถูกล็อกตาม System Requirement</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label text-muted fw-semibold mb-1">รูปแบบรหัสสินค้า (SKU Format)</label>
+                                        <input type="text" class="form-control form-control-sm shadow-none" value="SKU-[000]" placeholder="เช่น SKU-001">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Notifications -->
+                    <div class="tab-pane fade" id="v-notifications" role="tabpanel">
+                        <div class="card dashboard-card">
+                            <div class="card-header bg-white p-3 border-bottom">
+                                <h6 class="fw-bold text-dark-blue mb-0">การแจ้งเตือน (Notifications)</h6>
+                            </div>
+                            <div class="card-body p-4" style="font-size: 0.85rem;">
+                                <div class="mb-4">
+                                    <h6 class="fw-semibold text-dark mb-3">ช่องทางการแจ้งเตือน (Channels)</h6>
+                                    
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input shadow-none" type="checkbox" role="switch" id="notifSystem" checked>
+                                        <label class="form-check-label text-muted" for="notifSystem">
+                                            <span class="fw-semibold text-dark d-block">การแจ้งเตือนภายในระบบ (In-app Alerts)</span>
+                                            แสดงจุดแจ้งเตือนสีแดงที่ไอคอนกระดิ่งมุมขวาบน
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input shadow-none" type="checkbox" role="switch" id="notifEmail" checked>
+                                        <label class="form-check-label text-muted" for="notifEmail">
+                                            <span class="fw-semibold text-dark d-block">อีเมลแจ้งเตือน (Email Alerts)</span>
+                                            ส่งอีเมลสรุปรายการสินค้าที่ต่ำกว่าเกณฑ์ (Low Stock) ให้ผู้ดูแลระบบ
+                                        </label>
+                                    </div>
+                                </div>
+                                <hr class="text-muted opacity-25">
+                                <div class="mt-4">
+                                    <label class="form-label text-muted fw-semibold mb-1">อีเมลผู้รับการแจ้งเตือน (Admin Email)</label>
+                                    <input type="email" class="form-control form-control-sm shadow-none w-50" value="ktt.admin@tni.ac.th">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Database & Maintenance -->
+                    <div class="tab-pane fade" id="v-database" role="tabpanel">
+                        <div class="card dashboard-card">
+                            <div class="card-header bg-white p-3 border-bottom">
+                                <h6 class="fw-bold text-dark-blue mb-0">ระบบและฐานข้อมูล (System & Database)</h6>
+                            </div>
+                            <div class="card-body p-4" style="font-size: 0.85rem;">
+                                <div class="row g-4">
+                                    <div class="col-md-12">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <i class="bi bi-info-circle text-primary fs-4 me-3"></i>
+                                            <div>
+                                                <div class="fw-bold text-dark">เวอร์ชันของระบบ</div>
+                                                <div class="text-muted">Simple Entry System v1.0.0 (Node.js/Express Environment)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 border-end">
+                                        <h6 class="fw-semibold text-dark">สำรองข้อมูล (Backup)</h6>
+                                        <p class="text-muted mb-3" style="font-size: 0.75rem;">สำรองข้อมูล Master Data และประวัติรายการทั้งหมดเป็นไฟล์ JSON</p>
+                                        <button class="btn btn-sm btn-outline-primary shadow-none">
+                                            <i class="bi bi-cloud-download me-1"></i> Download Backup
+                                        </button>
+                                        <div class="text-muted mt-2" style="font-size: 0.7rem;">สำรองข้อมูลล่าสุด: 28 ก.ย. 2026</div>
+                                    </div>
+                                    <div class="col-md-6 ps-md-4">
+                                        <h6 class="fw-semibold text-danger">อันตราย (Danger Zone)</h6>
+                                        <p class="text-muted mb-3" style="font-size: 0.75rem;">การล้างข้อมูลจะลบ Transaction ทั้งหมด ไม่สามารถกู้คืนได้เว้นแต่จะมีไฟล์ Backup</p>
+                                        <button class="btn btn-sm btn-outline-danger shadow-none">
+                                            <i class="bi bi-exclamation-triangle me-1"></i> Factory Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification (สำหรับแสดงตอนกดบันทึก) -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="saveToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" style="font-size: 0.85rem;">
+                    <i class="bi bi-check-circle me-2"></i> บันทึกการตั้งค่าเรียบร้อยแล้ว
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin-common.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+/* สีหลักของระบบ (ดึงมาจากฝั่ง Admin) */
+:root {
+    --primary-dark: #1a2c42;
+    --dark-blue: #243f5a;
+    --muted-blue: #4a6d8c;
+    --light-gray: #f4f6f8;
+    --tile-green: #6a9b77;
+    --tile-orange: #c4956a;
+    --warning-custom: #c09440;
+}
+
+.text-mute-orange {
+    color: var(--tile-orange) !important;
+}
+
+body.mobile-body-bg {
+    font-family: 'Sarabun', sans-serif;
+    background-color: var(--light-gray); /* สีพื้นหลังตอนเปิดบนจอคอม */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* =========================================
+   Mobile Wrapper (จำลองหน้าจอมือถือ)
+========================================= */
+.mobile-wrapper {
+    width: 100%;
+    max-width: 400px; /* ขนาดจำลอง iPhone/Android */
+    height: 850px;
+    max-height: 100vh;
+    background-color: var(--light-gray);
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-radius: 30px; /* มุมโค้งแบบมือถือ */
+    border: 8px solid #111; /* ขอบโทรศัพท์ */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* กรณีเปิดบนหน้าจอมือถือจริงๆ ให้ขยายเต็มจอและลบขอบจำลองออก */
+@media (max-width: 450px) {
+    .mobile-wrapper {
+        border-radius: 0;
+        border: none;
+        height: 100vh;
+        max-width: 100%;
+        box-shadow: none;
+    }
+}
+
+/* =========================================
+   Header & Content
+========================================= */
+.app-header {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #edf2f7;
+    z-index: 10;
+}
+
+.app-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    /* ซ่อน Scrollbar แต่อย่างคง Scroll ได้ */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.app-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================
+   Bottom Navigation Bar
+========================================= */
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    border-top: 1px solid #edf2f7;
+    z-index: 20;
+    padding-bottom: 10px; /* เผื่อพื้นที่จอ iPhone รุ่นใหม่ */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #a0aec0;
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 60px;
+}
+.nav-item i {
+    font-size: 1.3rem;
+    margin-bottom: 2px;
+}
+.nav-item.active {
+    color: var(--muted-blue);
+}
+
+/* ปุ่ม Scan ยกตัวสูงขึ้นตรงกลาง (Floating Action Button style) */
+.scan-btn-wrapper {
+    position: relative;
+    top: -20px;
+}
+.scan-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: var(--muted-blue);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: transform 0.2s;
+}
+.scan-btn:active {
+    transform: scale(0.9);
+}

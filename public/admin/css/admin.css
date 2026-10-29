@@ -1,0 +1,340 @@
+/* admin.css */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* ธีมสีหลัก Enterprise & Muted Palette */
+    --theme-dark-blue: #243f5a;
+    --theme-blue-gray: #4a6d8c;
+    
+    /* สีเขียวตุ่น (Muted Green) - ปรับให้ตุ่นลง/ซอฟต์ตา เหมาะกับ Stock In & In Stock */
+    --mute-green: #547f61;
+    --mute-green-rgb: 84, 127, 97;
+    --mute-green-bg: rgba(84, 127, 97, 0.12);
+    --mute-green-border: rgba(84, 127, 97, 0.35);
+
+    /* สีส้มตุ่น (Muted Orange) - ปรับแทนสีแดง สำหรับ Stock Out (จ่ายออก) */
+    --mute-orange: #bc6c3b;
+    --mute-orange-rgb: 188, 108, 59;
+    --mute-orange-bg: rgba(188, 108, 59, 0.12);
+    --mute-orange-border: rgba(188, 108, 59, 0.35);
+}
+
+body {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 0.85rem; /* ปรับขนาดฟอนต์โดยรวมให้เล็กลง */
+    background-color: #f4f6f8;
+}
+
+.text-dark-blue { color: #243f5a; }
+.text-primary-dark { color: #1a2c42; }
+.hover-primary:hover { color: #0d6efd !important; }
+
+/* Utility Classes สำหรับเขียวตุ่นและส้มตุ่น */
+.text-mute-green { color: var(--mute-green) !important; }
+.bg-mute-green { background-color: var(--mute-green) !important; }
+.bg-mute-green-light { background-color: var(--mute-green-bg) !important; }
+.border-mute-green { border-color: var(--mute-green-border) !important; }
+
+.text-mute-orange { color: var(--mute-orange) !important; }
+.bg-mute-orange { background-color: var(--mute-orange) !important; }
+.bg-mute-orange-light { background-color: var(--mute-orange-bg) !important; }
+.border-mute-orange { border-color: var(--mute-orange-border) !important; }
+
+/* Top Navbar */
+.top-navbar {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    z-index: 1030;
+}
+
+/* Admin Profile Header Info (Enterprise 2-line layout) */
+.admin-profile-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-right: 0.25rem;
+    line-height: 1.1;
+}
+
+.admin-profile-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--theme-dark-blue);
+    line-height: 1.2;
+}
+
+.admin-profile-role {
+    font-size: 0.68rem;
+    color: #64748b;
+    line-height: 1.1;
+    font-weight: 500;
+}
+
+/* Secondary Navbar (บางลง) */
+.secondary-navbar {
+    background-color: #243f5a;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.secondary-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.secondary-navbar .nav-link:hover,
+.secondary-navbar .nav-link.active {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 2px solid #60a5fa;
+}
+
+/* Dashboard Cards (ลด Padding และเงา) */
+.dashboard-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.dashboard-card .card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #edf2f7;
+    border-radius: 6px 6px 0 0;
+}
+
+/* Tiles (สีตุ่น/Pastel มากขึ้น และลดความสูง) */
+.tile-card {
+    border: none;
+    border-radius: 4px;
+    transition: transform 0.2s;
+    min-height: 85px; /* ลดความสูงของ Tiles */
+}
+
+.tile-card:hover {
+    transform: translateY(-2px);
+}
+
+/* ปรับโค้ดสีให้ตุ่นและซอฟต์ลง */
+.bg-tile-green { background-color: #547f61; } 
+.bg-tile-orange { background-color: #ba895b; } 
+.bg-tile-purple { background-color: #a47d96; }
+.bg-tile-blue { background-color: #7b8b9c; }
+
+/* Reminders & Shortcuts */
+.reminder-list .list-group-item {
+    font-size: 0.75rem;
+    color: #4a5568;
+    border-bottom: 1px solid #f0f4f7 !important;
+}
+.reminder-list .list-group-item:last-child {
+    border-bottom: none !important;
+}
+
+.shortcuts-menu a {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+.shortcuts-menu a:hover {
+    background-color: #f0f4f7;
+}
+
+/* Tables */
+.table th, .table td {
+    padding: 0.5rem 0.5rem;
+}
+
+/* =========================================
+   ส่วนเพิ่มเติมสำหรับหน้า Master Data
+========================================= */
+
+/* ปรับแต่งปุ่มให้เป็นสีโทน Enterprise (Muted Blue/Green) */
+.btn-primary-custom {
+    background-color: #4a6d8c; /* สีน้ำเงินอมเทา */
+    border-color: #4a6d8c;
+    color: #fff;
+    transition: all 0.2s;
+}
+.btn-primary-custom:hover {
+    background-color: #38556f;
+    border-color: #38556f;
+    color: #fff;
+}
+
+/* Custom สี Warning ให้ดูซอฟต์ลง (ใช้กับตัวเลข Low Stock) */
+.text-warning-custom {
+    color: #d97706 !important;
+}
+
+/* ปรับหน้าตาตาราง Master Data */
+.master-data-table th, .master-data-table td {
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid #edf2f7;
+}
+.master-data-table th {
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+/* Badge สถานะแบบซอฟต์ๆ (Muted Colors) */
+.status-badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+.status-normal, .badge-in-stock, .badge-stock-in {
+    background-color: rgba(84, 127, 97, 0.12) !important;
+    color: #547f61 !important;
+    border-color: rgba(84, 127, 97, 0.35) !important;
+}
+.status-low, .badge-low-stock {
+    background-color: rgba(196, 149, 106, 0.12);
+    color: #c4956a;
+    border-color: rgba(196, 149, 106, 0.4);
+}
+.status-out {
+    background-color: rgba(185, 92, 80, 0.12);
+    color: #b95c50;
+    border-color: rgba(185, 92, 80, 0.4);
+}
+.badge-stock-out, .badge-out-stock {
+    background-color: rgba(188, 108, 59, 0.12) !important;
+    color: #bc6c3b !important;
+    border-color: rgba(188, 108, 59, 0.35) !important;
+}
+
+/* ปุ่ม Action Icon (แก้ไข, ลบ) */
+.btn-icon {
+    padding: 0.1rem 0.3rem;
+    line-height: 1;
+    background: transparent;
+    border: none;
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.1s;
+}
+.btn-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ปรับแต่ง Pagination ให้เข้ากับธีม */
+.pagination .page-link {
+    color: #4a6d8c;
+    border-color: #edf2f7;
+}
+.pagination .page-item.active .page-link {
+    background-color: #4a6d8c;
+    border-color: #4a6d8c;
+    color: #fff;
+}
+
+/* =========================================
+   ส่วนเพิ่มเติมสำหรับหน้า Staff Management
+========================================= */
+
+/* ป้ายสถานะ Role ให้แยกสีชัดเจนแต่ยังคงโทนตุ่น */
+.role-admin {
+    background-color: rgba(74, 109, 140, 0.15);
+    color: #4a6d8c;
+    border: 1px solid rgba(74, 109, 140, 0.3);
+    font-weight: 600;
+}
+.role-staff {
+    background-color: rgba(108, 117, 125, 0.15);
+    color: #6c757d;
+    border: 1px solid rgba(108, 117, 125, 0.3);
+    font-weight: 500;
+}
+
+/* เพิ่มให้ขอบการ์ดหนาขึ้นสำหรับทำ Summary Card */
+.border-4 {
+    border-width: 4px !important;
+}
+
+/* =========================================
+   ส่วนเพิ่มเติมสำหรับหน้า Reports / History
+========================================= */
+
+/* ปรับแต่ง Tabs ให้ดูเป็นระบบ Enterprise */
+.custom-tabs {
+    border-bottom: 2px solid #e2e8f0;
+}
+.custom-tabs .nav-link {
+    color: #64748b;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+.custom-tabs .nav-link:hover {
+    color: #243f5a;
+    border-bottom-color: #cbd5e1;
+}
+.custom-tabs .nav-link.active {
+    color: #243f5a;
+    background-color: transparent;
+    border-bottom: 2px solid #4a6d8c;
+}
+
+/* ปุ่ม Export ปรับเป็นสีเขียวตุ่น */
+.btn-outline-success {
+    color: #547f61;
+    border-color: #547f61;
+}
+.btn-outline-success:hover {
+    background-color: #547f61;
+    color: white;
+}
+.btn-outline-danger {
+    color: #d32f2f;
+    border-color: #d32f2f;
+}
+.btn-outline-danger:hover {
+    background-color: #d32f2f;
+    color: white;
+}
+
+/* =========================================
+   ส่วนเพิ่มเติมสำหรับหน้า Settings
+========================================= */
+
+/* ปรับแต่ง Vertical Navigation Pills ให้เป็นสไตล์เมนู */
+.custom-pills .nav-link {
+    color: #4a5568;
+    background-color: transparent;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    transition: all 0.2s;
+}
+
+.custom-pills .nav-link:hover {
+    background-color: #f0f4f7;
+    color: #243f5a;
+}
+
+.custom-pills .nav-link.active {
+    background-color: rgba(74, 109, 140, 0.1);
+    color: #4a6d8c;
+    border-left: 3px solid #4a6d8c;
+    border-radius: 0 6px 6px 0;
+}
+
+/* ปรับแต่ง Toggle Switch (Checkbox แบบเลื่อน) ให้เป็นสีธีม */
+.form-switch .form-check-input:checked {
+    background-color: #4a6d8c;
+    border-color: #4a6d8c;
+}

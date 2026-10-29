@@ -1,0 +1,1 @@
+#context { let s = page.width; let h = page.height; [width: #s, height: #h] }

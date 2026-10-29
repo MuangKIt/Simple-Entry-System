@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Stock In - Simple Entry System</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="css/mobile-shared.css">
+    <!-- Specific CSS -->
+    <link rel="stylesheet" href="css/stock-in.css">
+</head>
+<body class="mobile-body-bg">
+
+    <div class="mobile-wrapper bg-light">
+        
+        <!-- Header (ดึงสีน้ำเงินเข้มกลับมาใช้) -->
+        <header class="app-header sub-header d-flex align-items-center">
+            <a href="user.html" class="text-dark-blue text-decoration-none" style="width: 30px;">
+                <i class="bi bi-chevron-left fs-5"></i>
+            </a>
+            <h6 class="fw-bold text-dark-blue mb-0 flex-grow-1 text-center pe-4">รับสินค้าเข้า (Stock In)</h6>
+        </header>
+
+        <!-- พื้นที่เนื้อหาหลัก -->
+        <main class="app-content d-flex flex-column p-0">
+            
+            <!-- Group 1: ค้นหาสินค้า (ใส่กรอบสีขาวให้ลอยขึ้น) -->
+            <div class="bg-white p-3 mb-2 shadow-sm">
+                <label class="form-label fw-bold text-dark-blue mb-2" style="font-size: 0.85rem;">รหัสสินค้า (SKU)</label>
+                <div class="input-group input-group-lg search-group">
+                    <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search fs-6"></i></span>
+                    <input type="text" class="form-control border-start-0 border-end-0 shadow-none fs-6 px-1" id="skuInput" placeholder="กรอกรหัส หรือ สแกน...">
+                    <button class="btn btn-white border-start-0 text-muted shadow-none px-3" type="button" id="scanBtn">
+                        <i class="bi bi-upc-scan fs-4 text-dark-blue"></i>
+                    </button>
+                </div>
+                <div id="skuFeedback" class="form-text text-danger d-none mt-2" style="font-size: 0.75rem;"><i class="bi bi-exclamation-circle me-1"></i>ไม่พบรหัสสินค้านี้ในระบบ</div>
+            </div>
+
+            <!-- Card พรีวิวสินค้า (จะโชว์ก็ต่อเมื่อพิมพ์ถูก) -->
+            <div class="px-3 py-2 d-none" id="productPreviewWrapper">
+                <div class="card preview-card border-0 shadow-sm">
+                    <div class="card-body p-3">
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <span class="badge bg-light text-muted border" id="previewCategory">Category</span>
+                            <span class="badge badge-in-stock">พบสินค้า</span>
+                        </div>
+                        <h5 class="fw-bold text-dark-blue mb-0 mt-2" id="previewSku">SKU-XXX</h5>
+                        <div class="text-muted mb-2" style="font-size: 0.85rem;" id="previewName">Product Name</div>
+                        <div class="bg-light rounded p-2 d-flex justify-content-between align-items-center mt-2">
+                            <span class="text-muted" style="font-size: 0.75rem;">ยอดคงเหลือปัจจุบัน</span>
+                            <span class="fw-bold text-dark" style="font-size: 0.9rem;" id="previewCurrentStock">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group 2: จำนวนและหมายเหตุ (ครอบด้วย Card สีขาว) -->
+            <div class="bg-white p-3 flex-grow-1 shadow-sm mt-1" id="quantitySection" style="opacity: 0.4; pointer-events: none;">
+                
+                <label class="form-label fw-bold text-dark-blue mb-3 text-center w-100" style="font-size: 0.85rem;">ระบุจำนวนที่ต้องการรับเข้า</label>
+                
+                <!-- ตัวควบคุมจำนวน -->
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <button class="btn qty-btn shadow-sm" id="btnMinus"><i class="bi bi-dash-lg"></i></button>
+                    <input type="number" class="form-control shadow-none text-center fw-bold text-dark-blue mx-3 qty-input" id="qtyInput" value="1" min="1">
+                    <button class="btn qty-btn shadow-sm" id="btnPlus"><i class="bi bi-plus-lg"></i></button>
+                </div>
+
+                <!-- ปุ่มบวกด่วน (Quick Add) -->
+                <div class="d-flex justify-content-center gap-2 mb-4">
+                    <button class="btn btn-outline-secondary quick-chip rounded-pill py-1 px-3" onclick="addQty(10)">+10</button>
+                    <button class="btn btn-outline-secondary quick-chip rounded-pill py-1 px-3" onclick="addQty(50)">+50</button>
+                    <button class="btn btn-outline-secondary quick-chip rounded-pill py-1 px-3" onclick="addQty(100)">+100</button>
+                </div>
+
+                <!-- ส่วนอ้างอิง -->
+                <div class="mb-5">
+                    <label class="form-label fw-semibold text-muted" style="font-size: 0.75rem;">หมายเหตุ / อ้างอิง (Optional)</label>
+                    <input type="text" class="form-control shadow-none bg-light border-0" placeholder="เช่น PO-1234, หรือปล่อยว่าง..." style="font-size: 0.8rem; padding: 10px 12px;">
+                </div>
+
+                <!-- ปุ่ม Submit ย้ายมาอยู่ใน Card นี้เลยเพื่อให้เป็นก้อนเดียวกัน -->
+                <button class="btn btn-primary-custom w-100 py-3 rounded-3 shadow-sm submit-btn disabled mt-auto mb-5" id="btnSubmit">
+                    <span class="fw-bold fs-6"><i class="bi bi-check2-circle me-2 fs-5"></i>ยืนยันการรับเข้า</span>
+                </button>
+                
+                <!-- เผื่อพื้นที่ให้ Bottom Nav -->
+                <div style="height: 40px;"></div>
+            </div>
+
+        </main>
+
+        <!-- Success Action Modal (หลังทำรายการเสร็จ) -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered px-3">
+                <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="modal-body text-center p-4">
+                        <div class="rounded-circle bg-success bg-opacity-10 text-success d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-check2-circle fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark-blue mb-1" id="successModalTitle">รับเข้าสินค้าสำเร็จ!</h5>
+                        <p class="text-muted small mb-3" id="successModalSubtitle">ข้อมูลถูกบันทึกลงระบบและอัปเดตสต็อกแล้ว</p>
+                        
+                        <div class="bg-light rounded-3 p-3 text-start mb-3 border">
+                            <div class="d-flex justify-content-between mb-2 pb-2 border-bottom" style="font-size: 0.75rem;">
+                                <span class="text-muted">Ref-ID:</span>
+                                <span class="text-secondary font-monospace" id="modalRefId">#TRX-XXXX</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1" style="font-size: 0.8rem;">
+                                <span class="text-muted">วันเวลา:</span>
+                                <span class="fw-semibold text-dark" id="modalTimestamp">2026-10-07 10:00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1" style="font-size: 0.8rem;">
+                                <span class="text-muted">สินค้า:</span>
+                                <span class="fw-bold text-dark" id="modalProductText">SKU-001</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1" style="font-size: 0.8rem;">
+                                <span class="text-muted">จำนวนที่รับเข้า:</span>
+                                <span class="fw-bold text-success fs-6" id="modalQtyText">+10 ชิ้น</span>
+                            </div>
+                            <div class="d-flex justify-content-between pt-2 mt-2 border-top" style="font-size: 0.85rem;">
+                                <span class="fw-semibold text-dark">สต็อกคงเหลือล่าสุด:</span>
+                                <span class="fw-bold text-dark-blue fs-6" id="modalUpdatedStock">160 ชิ้น</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column gap-2">
+                            <button type="button" class="btn btn-outline-secondary py-2 rounded-3 fw-semibold shadow-none" id="btnViewSlip" style="font-size: 0.85rem;">
+                                <i class="bi bi-file-earmark-pdf text-danger me-1"></i> ดูใบสำคัญรับสินค้า (View Slip / PDF)
+                            </button>
+                            <a href="#" class="btn btn-outline-primary py-2 rounded-3 fw-semibold shadow-none" id="btnGoCheckStock" style="font-size: 0.85rem;">
+                                <i class="bi bi-search me-1"></i> ตรวจสอบสต็อก (Check Stock)
+                            </a>
+                            <button type="button" class="btn btn-primary-custom py-2 rounded-3 fw-semibold shadow-none" data-bs-dismiss="modal" style="font-size: 0.85rem;">
+                                <i class="bi bi-plus-lg me-1"></i> ทำรายการต่อ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- แถบเมนูด้านล่าง (อิงจาก mobile-shared.css) -->
+        <nav class="bottom-nav">
+            <div class="nav-item" onclick="window.location.href='user.html'">
+                <i class="bi bi-house-door"></i>
+                <span>หน้าแรก</span>
+            </div>
+            
+            <div class="nav-item scan-btn-wrapper">
+                <button class="scan-btn shadow" style="background-color: var(--muted-blue);">
+                    <i class="bi bi-qr-code-scan"></i>
+                </button>
+            </div>
+            
+            <div class="nav-item" onclick="window.location.href='profile.html'">
+                <i class="bi bi-person"></i>
+                <span>โปรไฟล์</span>
+            </div>
+        </nav>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/stock-in.js"></script>
+</body>
+</html>
